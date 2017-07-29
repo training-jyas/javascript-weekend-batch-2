@@ -1,0 +1,46 @@
+// var global = 'a global variable';
+// var fn = function () {
+//     var test = "abc";
+//     var fn = function () {
+//         console.log('some function');
+//     };
+//     console.log(global);
+//     fn();
+// };
+// fn();
+
+// in the above example 'global' variable is referring the window context
+// but in the below example when we use iife context scope is limited to the function.
+(function () {
+    var global = 'a global variable';
+    function fn() {
+        var test = "abc";
+        function fn() {
+            console.log('some function');
+        };
+        console.log(global);
+        fn();
+    };
+    fn();
+})();
+
+// one more example of a iife 
+console.log("######### iife example 2 ###########");
+(function (w, a) {
+    var test = function () {
+        return 'world';
+    }
+    test();
+
+
+    console.log('world');
+    console.log(a);
+
+    function test1() {
+        console.log();
+    }
+    w.test = test;
+})(window, 10);
+
+console.log('calling test from window : ', test());
+console.log('calling test1 from window : ', test1());
