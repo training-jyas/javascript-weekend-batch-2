@@ -1,0 +1,17 @@
+[{
+    "username": "ravi",
+    "fullname": "ravi varma",
+    "email": "abc@xyz.com",
+    "gender": "male",
+    "location": "bengaluru",
+    "age": 20,
+    "_id": 1
+}, {
+    "username": "saurav",
+    "fullname": "saurav kumar",
+    "email": "def@xyz.com",
+    "gender": "male",
+    "location": "bengaluru",
+    "age": 21,
+    "_id": 2
+}]
