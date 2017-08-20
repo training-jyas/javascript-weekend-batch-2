@@ -18,10 +18,29 @@ $(document).ready(function () {
     $('#userList table tbody').on('click', 'td a.linkshowuser', showUserInfo);
 
     // Add User button click
-    $('#btnAddUser').on('click', addUser);
+    // $('#btnAddUser').on('click', addUser);
+    document.getElementById('btnAddUser').addEventListener('click', addUser);
 
     // Delete User link click
     $('#userList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);
+
+    var anchorElem = document.getElementById('google_link');
+    anchorElem.addEventListener('click', function(event){
+        event.preventDefault();
+        console.log('google link clicked');
+    });
+    anchorElem.addEventListener('mouseenter', function(event){
+        event.preventDefault();
+        console.log('google link hovered');
+    });
+    anchorElem.addEventListener('focus', function(event){
+        event.preventDefault();
+        console.log('google link focused');
+    });
+    anchorElem.addEventListener('mouseout', function(event){
+        event.preventDefault();
+        console.log('google link un-hovered');
+    });
 });
 
 // Functions =============================================================
@@ -124,53 +143,54 @@ function showUserInfo(event) {
 
 // Add User
 function addUser(event) {
+    console.log('event = ',event);
     event.preventDefault();
 
     // Super basic validation - increase errorCount variable if any fields are blank
     var errorCount = 0;
-    $('#addUser input').each(function (index, val) {
-        if ($(this).val() === '') {
-            errorCount++;
-        }
-    });
+    // $('#addUser input').each(function (index, val) {
+    //     if ($(this).val() === '') {
+    //         errorCount++;
+    //     }
+    // });
 
     // Check and make sure errorCount's still at zero
     if (errorCount === 0) {
 
         // If it is, compile all user info into one object
         var newUser = {
-            'username': $('#addUser input#inputUserName').val(),
-            'email': $('#addUser input#inputUserEmail').val(),
+            'username': document.querySelector('#addUser input#inputUserName').value,
+            'email': document.querySelector('#addUser input#inputUserEmail').value,
             'fullname': $('#addUser input#inputUserFullname').val(),
             'age': $('#addUser input#inputUserAge').val(),
             'location': $('#addUser input#inputUserLocation').val(),
             'gender': $('#addUser input#inputUserGender').val()
         }
-
+        console.log('user object =', newUser);
         // Use AJAX to post the object to our adduser service
-        $.ajax({
-            type: 'POST',
-            data: newUser,
-            url: addUrl,
-            dataType: 'JSON'
-        }).done(function (response) {
+    //     $.ajax({
+    //         type: 'POST',
+    //         data: newUser,
+    //         url: addUrl,
+    //         dataType: 'JSON'
+    //     }).done(function (response) {
 
-            // Check for successful (blank) response
-            if (response.msg === '') {
+    //         // Check for successful (blank) response
+    //         if (response.msg === '') {
 
-                // Clear the form inputs
-                $('#addUser input').val('');
+    //             // Clear the form inputs
+    //             $('#addUser input').val('');
 
-                // Update the table
-                populateTable();
+    //             // Update the table
+    //             populateTable();
 
-            } else {
+    //         } else {
 
-                // If something goes wrong, alert the error message that our service returned
-                alert('Error: ' + response.msg);
+    //             // If something goes wrong, alert the error message that our service returned
+    //             alert('Error: ' + response.msg);
 
-            }
-        });
+    //         }
+    //     });
     } else {
         // If errorCount is more than 0, error out
         alert('Please fill in all fields');
