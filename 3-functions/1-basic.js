@@ -39,18 +39,14 @@ console.log(test3()); // we get undefined
 console.log("#####################################");
 
 var func;
-
-function print() {
-    if (typeof func === 'function') {
-        func();
-    }
+if (typeof func === 'function') {
+    func();
 }
-print();
 
 func = function () {
     console.log('now i am a function');
 };
-print();
+func();
 
 // call it in diff ways
 function fn() {
@@ -64,10 +60,4 @@ console.log(typeof fn);
 
 console.log("#######################") 
 console.log("Anonymous functions")
-console.log("#######################") 
-
-function test() {
-    return 2 + 3;
-}
-console.log(test);
-console.log(test());
+console.log("#######################")

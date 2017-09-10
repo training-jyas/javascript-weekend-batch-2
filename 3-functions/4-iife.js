@@ -1,14 +1,15 @@
-// var global = 'a global variable';
-// var fn = function () {
-//     var test = "abc";
-//     var fn = function () {
-//         console.log('some function');
-//     };
-//     console.log(global);
-//     fn();
-// };
-// fn();
+var global = 'a global variable';
+var fn = function () {
+    var test = "abc";
+    var fn = function () {
+        console.log('some function');
+    };
+    console.log(global);
+    fn();
+};
+fn();
 
+// IIFE - Immediate Invoking Function Expression
 // in the above example 'global' variable is referring the window context
 // but in the below example when we use iife context scope is limited to the function.
 (function () {
